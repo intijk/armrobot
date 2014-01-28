@@ -9,10 +9,10 @@ There are 5 servos in this robot, number as 0-4 from top to bottom.
 
 Current there are 3 commands supported:
 
-A a0 a1 a2 a3 a4
-V v0 v1 v2 v3 v4
-P n AMin AMax VMin VMax ADef
-
+	A a0 a1 a2 a3 a4
+	V v0 v1 v2 v3 v4
+	P n AMin AMax VMin VMax ADef
+	
 **V** is to give the value of Arduino built-in Servo class, this command means:
 
 	S[0].write(v0);
