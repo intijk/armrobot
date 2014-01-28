@@ -14,6 +14,7 @@ AMin AMax VMin VMax ADef
 #define BUF_SIZE 256
 #define NServo 5
 #define NParameter 5
+#define FrameDelayMs 100
 
 
 int i,j,k;
@@ -107,7 +108,7 @@ void loop()
     Serial.println(buf);
     
     if(buf[0]=='A'){ //move to angle
-      //A a1 a2 a3 a4 a5
+      //A a0 a1 a2 a3 a4
       int ind=0;
       for(i=0;i<NServo;i++){
         while(buf[ind]!=' ')ind++;//skip string
@@ -118,7 +119,7 @@ void loop()
         }
       }
     }else if(buf[0]=='V'){ //value to servo
-      //V v1 v2 v3 v4 v5
+      //V v0 v1 v2 v3 v4
       int ind=0;
       for(i=0;i<NServo;i++){
         while(buf[ind]!=' ')ind++;//skip string
@@ -153,37 +154,5 @@ void loop()
     }
     ClearBuf();
   }
-
-  /*
-    if(d==0){
-      if(a<130-5){
-        a+=5;
-      }else{
-        d=1;
-        a-=5;
-      }
-    }else{
-      if(a>40+5){
-        a-=5;
-      }
-      else{
-        d=0;
-        a+=5;
-      }
-    }
-    Serial.print(a);
-    Serial.println();
-    */
-    //WriteDefault();
-    /*
-    a = 90;
-    s1.write(40);//0 ~ 80  0 - 100 
-    s2.write(80); //80 ~ 165 0-90 
-    s3.write(110); // 110 ~ 180  0-67
-    s4.write(90);  //90 ~ 180 0~ 90
-    s5.write(180);  //0 ~ 180 0 ~ 180
-    */
-    delay(100);
-    //Serial.println("N here");
-    
+  delay(FrameDelayMs);   
 } 
