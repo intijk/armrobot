@@ -25,6 +25,12 @@ Current there are 3 commands supported:
 
 **P** command is for the calibration, n is servo number, AMin AMax is the angle bound of the servo specified by n, VMin VMax is the value for Servo class, a map() behind it doing the transformation from A to V. ADef is the default angle you want to put. Don't confused by the name, AMin and AMax doesn't necessarily means AMin<AMax, they just mark the boundry.
 
+**T** command is for test connection, it use the default echo of your command, use for example:
+
+	T token
+
+Gives the exactly same echo of command, use this to test if the comport is connected as your robot.
+
 All the value in command should be integer, and only treated as valid when it is non-negtive. Any value less than 0 will be treated as invalid and will just skip it.
 
 Values will write into EEPROM which means you don't need to calibrate again after reboot the robot.

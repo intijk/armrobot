@@ -15,7 +15,7 @@ AMin AMax VMin VMax ADef
 #define NServo 5
 #define NParameter 5
 #define FrameDelayMs 100
-
+#define debug
 
 int i,j,k;
 char buf[BUF_SIZE];
@@ -36,12 +36,14 @@ void ReadParameter()
     VMin[i]=EEPROM.read(i*NParameter+2);
     VMax[i]=EEPROM.read(i*NParameter+3);
     ADef[i]=EEPROM.read(i*NParameter+4);
-    Serial.print("AMin["); Serial.print(i, DEC); Serial.print("]=");Serial.print(AMin[i], DEC); Serial.print(" ");
+ #ifdef debug
+    Serial.print("D: AMin["); Serial.print(i, DEC); Serial.print("]=");Serial.print(AMin[i], DEC); Serial.print(" ");
     Serial.print("AMax["); Serial.print(i, DEC); Serial.print("]=");Serial.print(AMax[i], DEC); Serial.print(" ");
     Serial.print("VMin["); Serial.print(i, DEC); Serial.print("]=");Serial.print(VMin[i], DEC); Serial.print(" ");
     Serial.print("VMax["); Serial.print(i, DEC); Serial.print("]=");Serial.print(VMax[i], DEC); Serial.print(" ");
     Serial.print("ADef["); Serial.print(i, DEC); Serial.print("]=");Serial.print(ADef[i], DEC); Serial.print(" ");
     Serial.println("");
+ #endif
   }
 }
 void VWrite(int n, int V)
@@ -98,8 +100,11 @@ int readCommand()
   if(buf[0]>='A' && buf[0]<='Z'){
     return 1;
   }
+#ifdef debug
+  Serial.print("D: ");
   Serial.println(buf);
   Serial.println("Format Error");
+#endif
   return 0;
 }
 void loop() 
@@ -154,5 +159,5 @@ void loop()
     }
     ClearBuf();
   }
-  delay(FrameDelayMs);   
+  delay(FrameDelayMs);
 } 
