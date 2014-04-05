@@ -103,11 +103,12 @@ int readCommand()
 #ifdef debug
   Serial.print("D: ");
   Serial.println(buf);
+  Serial.print("D: ");
   Serial.println("Format Error");
 #endif
   return 0;
 }
-void loop() 
+void loop()
 {
   if(readCommand()){
     Serial.println(buf);
@@ -156,6 +157,8 @@ void loop()
           EEPROM.write(n*NParameter+i,(unsigned char)p);
         }
       }
+    }else if(buf[0]=='T'){
+      //Serial.println(buf);
     }
     ClearBuf();
   }
