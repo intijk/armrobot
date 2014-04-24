@@ -147,10 +147,10 @@ void loop()
         int p=atoi(buf+ind);
         if(p>=0){
           switch(i){
-              case(0): AMax[n]=p; break;
-              case(1): AMin[n]=p; break;
-              case(2): VMax[n]=p; break;
-              case(3): VMin[n]=p; break;
+              case(0): AMin[n]=p; break;
+              case(1): AMax[n]=p; break;
+              case(2): VMin[n]=p; break;
+              case(3): VMax[n]=p; break;
               case(4): ADef[n]=p; break;
               default: Serial.println("Unsupported Parameter");
           }
